@@ -1,0 +1,13 @@
+{
+  "plugins": [
+    "react",
+    "react-native"
+  ],
+    "extends": [
+      "eslint:recommended",
+      "plugin:react/recommended"
+    ],
+    "rules":{
+      "quotes":[2,"double",{"avoidEscape":true}],
+    }
+}
