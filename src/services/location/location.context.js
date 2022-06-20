@@ -9,7 +9,6 @@ export const LocationContextProvider = ({ children }) => {
   const [location, setLocation] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-  console.log('aqui', location);
 
   const onSearch = (searchKeyword) => {
     if (!searchKeyword.length) {
@@ -27,7 +26,6 @@ export const LocationContextProvider = ({ children }) => {
       .catch((err) => {
         setIsLoading(false);
         setError(err);
-        console.log(err);
       });
   };
 

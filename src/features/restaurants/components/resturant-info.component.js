@@ -15,19 +15,8 @@ import {
   Icon,
 } from './resturant-info-styles';
 
-export const RestaurantInfo = () => {
-  const resturant = {
-    name: 'Some Restaurant',
-    icon: 'https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/lodging-71.png',
-    photos: [
-      'https://www.foodiesfeed.com/wp-content/uploads/2019/06/top-view-for-box-of-2-burgers-home-made-600x899.jpg',
-    ],
-    address: '100 some random street',
-    isOpenNow: true,
-    rating: 4,
-    isClosedTemporarily: true,
-  };
-  const ratingArray = Array.from(new Array(Math.floor(resturant.rating)));
+export const RestaurantInfo = ({ resturant }) => {
+  // const ratingArray = Array.from(new Array(Math.floor(resturant.rating)));
   return (
     <ResturantCard elevation={5}>
       <CardCover key={resturant.name} source={{ uri: resturant.photos[0] }} />
@@ -35,9 +24,9 @@ export const RestaurantInfo = () => {
         <Text variant="label">{resturant.name}</Text>
         <Section>
           <Rating>
-            {ratingArray.map((item, idx) => (
+            {/* {ratingArray.map((item, idx) => (
               <SvgXml xml={star} width={20} height={20} key={idx} />
-            ))}
+            ))} */}
           </Rating>
           <SectionEnd>
             {resturant.isClosedTemporarily && (

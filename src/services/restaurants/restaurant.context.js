@@ -17,21 +17,21 @@ export const RestaurantContextProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const { location } = useContext(LocationContext);
-  console.log('ma', location);
+
   const retrieveRestaurants = (loc) => {
     setIsLoading(true);
+    setRestaurants([]);
     setTimeout(() => {
       restaurantsRequest(loc)
         .then(restaurantsTransform)
         .then((results) => {
           setIsLoading(false);
-          console.log('deu certo', results);
+
           setRestaurants(results);
         })
         .catch((err) => {
           setIsLoading(false);
           setError(err);
-          console.log('deu erro', err);
         });
     }, 2000);
   };
