@@ -5,7 +5,7 @@ import { ThemeProvider } from 'styled-components/native';
 import { ResturantsScreens } from './src/features/restaurants/screens/restaurants.screen';
 import { Ionicons } from '@expo/vector-icons';
 import { SafeArea } from './src/components/utils/safe-area';
-import { restaurantsRequest } from './src/services/restaurants/restaurants.service';
+import { LocationContextProvider } from './src/services/location/location.context';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 
@@ -60,22 +60,24 @@ export default function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <RestaurantContextProvider>
-          <NavigationContainer>
-            <Tab.Navigator
-              screenOptions={createScreenOptions}
-              tabBarOptions={{
-                activeTintColor: 'tomato',
-                inactiveTintColor: 'gray',
-              }}
-            >
-              <Tab.Screen name="Restaurants" component={ResturantsScreens} />
-              <Tab.Screen name="Map" component={Map} />
-              <Tab.Screen name="Settings" component={Settings} />
-            </Tab.Navigator>
-            <ExpoStatusBar style="auto" />
-          </NavigationContainer>
-        </RestaurantContextProvider>
+        <LocationContextProvider>
+          <RestaurantContextProvider>
+            <NavigationContainer>
+              <Tab.Navigator
+                screenOptions={createScreenOptions}
+                tabBarOptions={{
+                  activeTintColor: 'tomato',
+                  inactiveTintColor: 'gray',
+                }}
+              >
+                <Tab.Screen name="Restaurants" component={ResturantsScreens} />
+                <Tab.Screen name="Map" component={Map} />
+                <Tab.Screen name="Settings" component={Settings} />
+              </Tab.Navigator>
+              <ExpoStatusBar style="auto" />
+            </NavigationContainer>
+          </RestaurantContextProvider>
+        </LocationContextProvider>
       </ThemeProvider>
     </>
   );

@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { Searchbar } from 'react-native-paper';
+import { Search } from '../components/search.component';
 import styled from 'styled-components/native';
 import { SafeArea } from '../../../components/utils/safe-area';
 import { FlatList, View } from 'react-native';
@@ -19,13 +19,7 @@ export const ResturantsScreens = () => {
 
   return (
     <SafeArea>
-      <SearchBoxContainer>
-        <Searchbar
-          placeholder="Search"
-          onChangeText={onChangeSearch}
-          value={searchQuery}
-        />
-      </SearchBoxContainer>
+      <Search />
       <ResturantList
         data={restaurants}
         renderItem={(item) => <RestaurantInfo resturant={item} />}
