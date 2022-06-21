@@ -9,6 +9,7 @@ import {
 import { useFonts as useLato, Lato_400Regular } from '@expo-google-fonts/lato';
 import { RestaurantContextProvider } from './src/services/restaurants/restaurant.context';
 import { NavigatonApp } from './src/infrastructure/navigation/app.navigator';
+import { FavouritesContextProvider } from './src/services/favourites/favourites.context';
 
 export default function App() {
   const [oswaldLoaded] = useOswald({
@@ -26,11 +27,13 @@ export default function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <LocationContextProvider>
-          <RestaurantContextProvider>
-            <NavigatonApp />
-          </RestaurantContextProvider>
-        </LocationContextProvider>
+        <FavouritesContextProvider>
+          <LocationContextProvider>
+            <RestaurantContextProvider>
+              <NavigatonApp />
+            </RestaurantContextProvider>
+          </LocationContextProvider>
+        </FavouritesContextProvider>
       </ThemeProvider>
     </>
   );

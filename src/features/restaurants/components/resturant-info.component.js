@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { SvgXml } from 'react-native-svg';
+
 import { Text } from '../../../components/typography/text.component';
 import star from '../../../../assets/star';
 import open from '../../../../assets/open';
@@ -14,12 +15,18 @@ import {
   Rating,
   Icon,
 } from './resturant-info-styles';
+import { View } from 'react-native';
+import { Favourite } from '../../../components/favourite/favourite.component';
 
 export const RestaurantInfo = ({ resturant }) => {
   const ratingArray = Array.from(new Array(Math.floor(resturant.rating)));
   return (
     <ResturantCard elevation={5}>
-      <CardCover key={resturant.name} source={{ uri: resturant.photos[0] }} />
+      <View>
+        <Favourite restaurant={resturant} />
+        <CardCover key={resturant.name} source={{ uri: resturant.photos[0] }} />
+      </View>
+
       <Info>
         <Text variant="label">{resturant.name}</Text>
         <Section>
