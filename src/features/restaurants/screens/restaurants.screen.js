@@ -3,7 +3,7 @@ import { ActivityIndicator, Colors } from 'react-native-paper';
 import { Search } from '../components/search.component';
 import styled from 'styled-components/native';
 import { SafeArea } from '../../../components/utils/safe-area';
-import { FlatList, View } from 'react-native';
+import { FlatList, TouchableOpacity, View } from 'react-native';
 import { RestaurantInfo } from '../components/resturant-info.component';
 import { RestaurantContext } from '../../../services/restaurants/restaurant.context';
 
@@ -19,14 +19,9 @@ const LoadingContainer = styled.View`
   left: 50%;
 `;
 
-export const ResturantsScreens = () => {
+export const ResturantsScreens = ({ navigation }) => {
   const { restaurants, isLoading, error } = useContext(RestaurantContext);
-  console.log('logo', restaurants[0]);
-  useEffect(() => {
-    if (restaurants) {
-      console.log('logo', restaurants[0].photos);
-    }
-  }, [restaurants]);
+
   return (
     <SafeArea>
       <Search />
@@ -36,13 +31,25 @@ export const ResturantsScreens = () => {
         </LoadingContainer>
       ) : (
         <>
-          {/* {restaurants.length > 0 && (
+          {restaurants.length > 0 && restaurants !== undefined && (
             <ResturantList
               data={restaurants}
-              renderItem={(item) => <RestaurantInfo resturant={item} />}
+              renderItem={({ item }) => {
+                return (
+                  <TouchableOpacity
+                    onPress={() =>
+                      navigation.navigate('RestaurantDetail', {
+                        restaurant: item,
+                      })
+                    }
+                  >
+                    <RestaurantInfo resturant={item} />
+                  </TouchableOpacity>
+                );
+              }}
               keyExtractor={(item) => item.name}
             />
-          )} */}
+          )}
         </>
       )}
     </SafeArea>

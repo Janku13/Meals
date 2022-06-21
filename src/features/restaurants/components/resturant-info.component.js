@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { SvgXml } from 'react-native-svg';
 import { Text } from '../../../components/typography/text.component';
 import star from '../../../../assets/star';
@@ -16,7 +16,7 @@ import {
 } from './resturant-info-styles';
 
 export const RestaurantInfo = ({ resturant }) => {
-  // const ratingArray = Array.from(new Array(Math.floor(resturant.rating)));
+  const ratingArray = Array.from(new Array(Math.floor(resturant.rating)));
   return (
     <ResturantCard elevation={5}>
       <CardCover key={resturant.name} source={{ uri: resturant.photos[0] }} />
@@ -24,9 +24,9 @@ export const RestaurantInfo = ({ resturant }) => {
         <Text variant="label">{resturant.name}</Text>
         <Section>
           <Rating>
-            {/* {ratingArray.map((item, idx) => (
+            {ratingArray.map((item, idx) => (
               <SvgXml xml={star} width={20} height={20} key={idx} />
-            ))} */}
+            ))}
           </Rating>
           <SectionEnd>
             {resturant.isClosedTemporarily && (
